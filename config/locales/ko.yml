@@ -2,6 +2,7 @@
 ko:
   activerecord:
     attributes:
+      afficher_les_filtres: 필터
       message:
         id: No
         admin_user: 보낸이
@@ -30,16 +31,13 @@ ko:
         time_slot: 시간대
         created_at: "생성 시간"
         updated_at: "수정 시간"
-      finance:
-        name: "회사명"
-        fi_code: "종목코드"
-        department: "업종"
-        main_product: "주요제품"
-        listed_day: "상장일"
-        dec_year: "결산월"
-        manager_name: "대표자명"
-        url: "홈페이지"
-        location: "지역"
+      image_info:
+        image_idx: "id"
+        search_keyword: "검색 키워드"
+        img_thumb: "미리보기"
+        crawling_date: "크롤링 날짜"
+        similarity: "유사도"
+        status: "적합 여부"
       admin_user:
         password: 비밀번호
         password_confirmation: "비밀번호 확인"

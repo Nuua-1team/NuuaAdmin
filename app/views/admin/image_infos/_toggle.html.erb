@@ -1,0 +1,10 @@
+
+<%= link_to  toggle_admin_image_info_path(id) ,data:{remote:true},method: :post do %>
+  <% if status==1 %>
+    <input type="checkbox" checked="true">
+    <span class="slider round"></span>
+  <% else %>
+    <input type="checkbox">
+    <span class="slider round"></span>
+  <% end %>
+<% end %>

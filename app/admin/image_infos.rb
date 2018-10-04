@@ -11,59 +11,42 @@ ActiveAdmin.register ImageInfo do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+menu priority: 2
 
-  controller do
-    def toggle
-      puts params
+
+  filter :similarity, as: :numeric_range_filter
+  filter :status, as: :select,:collection => [["판정 전",0],["적합",1],["부적합",2]]
+
+  member_action :toggle, method: :post do
+
+      @img_info = ImageInfo.find(params[:id])
+      @past_status=@img_info.status
+      if @img_info.status != 1
+        @img_info.update(status:1)
+      else
+        @img_info.update(status:0)
+      end
+      respond_to do |format|
+        format.js#s { render "toggle", :locals => {:id => params[:id]} }
+      end
+
     end
-  end
 
   index do
     column :image_idx
     column :search_keyword
     column :img_thumb do |obj|
-        image_tag obj.image_url ,class: "thumb",style: "height: 12em; ,width:auto;" if obj.image_url?
+        image_tag obj.image_url ,class: "thumb",style: "height: 12em; max-width:30em; width:auto" if obj.image_url?
     end
-
     column :crawling_date
-    column :imilarity
-    #
+    column :similarity
+
+    #1이 맞는거
     column :status do |obj|
-      if obj.status=="1"
-        label class:"switch" do
-          # a href:"asd" do
-          input type:"checkbox",checked:""  do
-            span class:"slider round" do
-            # end
-          end
-        end
+      label class:"switch" do
+        render "toggle", id:obj.image_idx, status:obj.status
       end
-
-      else
-
-        label class:"switch" do
-          # a href:"asd" do
-          input type:"checkbox"  do
-            span class:"slider round" do
-            # end
-          end
-        end
-      end
-      end
-
-      # div class:"toggle-bool-switches-container" do
-      #   span do
-      #     span id:"toggle-image_info-#{obj.image_idx}-status" , class:"toggle-bool-switch #{toggle}",
-      #     input_html: {
-      #       "data-object_id":obj.image_idx,
-      #       "data-field":"status",
-      #       "data-value":"0",
-      #       "data-url":"/admin/image_infos/"+obj.image_idx.to_s
-      #     }
-      #   end
-      # end
     end
-
 
     column :insta_data_id
     column :trip_idx

@@ -1,0 +1,9 @@
+
+if( <%= @past_status %> == 1 )
+{
+  $("#image_info_<%=@img_info.image_idx %> .col-status input").removeAttr("checked")
+}
+else
+{
+  $("#image_info_<%=@img_info.image_idx %> .col-status input").attr("checked",true)
+}

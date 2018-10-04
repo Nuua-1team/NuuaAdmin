@@ -23,3 +23,7 @@
  //  &.rejected { background: $rejected-color; }
  //  &.approved { background: $approved-color; }
  // }
+
+.select2-dropdown{
+  z-index:9999;
+}
