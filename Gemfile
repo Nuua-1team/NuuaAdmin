@@ -70,3 +70,6 @@ gem 'active_admin_flat_skin'
 gem "font-awesome-rails"
 gem 'activeadmin_addons'
 gem 'enumerize'
+gem 'active_median'
+gem "chartkick"
+gem "highcharts"
