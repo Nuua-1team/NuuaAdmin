@@ -16,9 +16,8 @@ menu priority: 2
 
   filter :similarity, as: :numeric_range_filter
   filter :status, as: :select,:collection => [["판정 전",0],["적합",1],["부적합",2]]
-
+  filter :search_keyword,as: :select
   member_action :toggle, method: :post do
-
       @img_info = ImageInfo.find(params[:id])
       @past_status=@img_info.status
       if @img_info.status != 1

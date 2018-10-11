@@ -73,3 +73,4 @@ gem 'enumerize'
 gem 'active_median'
 gem "chartkick"
 gem "highcharts"
+gem "figaro"
