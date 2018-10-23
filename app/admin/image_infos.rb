@@ -12,10 +12,12 @@ permit_params :list, :of, :attributes, :on, :model
 #   permitted
 # end
 
-  action_item do
-    link_to "로그인",new_admin_user_session_path
-  end
-
+action_item do
+  link_to "로그아웃",destroy_admin_user_session_path, method: :delete if !current_admin_user.nil?
+end
+action_item do
+  link_to "로그인",new_admin_user_session_path,method: :get if current_admin_user.nil?
+end
 menu priority: 2
 
 
@@ -47,7 +49,7 @@ menu priority: 2
     column :similarity
 
     #1이 맞는거
-    if !current_user.nil?
+    if !current_admin_user.nil?
       column :status do |obj|
         label class:"switch" do
           render "toggle", id:obj.image_idx, status:obj.status
@@ -57,7 +59,7 @@ menu priority: 2
 
     column :insta_data_id
     column :trip_idx
-    actions if !current_user.nil?
+    actions if !current_admin_user.nil?
 
   end
 

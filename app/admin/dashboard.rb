@@ -2,11 +2,12 @@ ActiveAdmin.register_page "Dashboard" do
 
 
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
-
   action_item do
-    link_to "로그인",new_admin_user_session_path
+    link_to "로그아웃",destroy_admin_user_session_path, method: :delete if !current_admin_user.nil?
   end
-
+  action_item do
+    link_to "로그인",new_admin_user_session_path,method: :get if current_admin_user.nil?
+  end
   action_item :import_demo, only: :show do
     link_to 'Import Demo', '#'
   end
@@ -40,9 +41,11 @@ ActiveAdmin.register_page "Dashboard" do
                   td class:"col col-similarity" do
                     img_info.similarity
                   end
-                  td class:"col col-status" do
-                    label class:"switch" do
-                      render "toggle", id:img_info.image_idx, status:img_info.status
+                  if !current_admin_user.nil?
+                    td class:"col col-status" do
+                      label class:"switch" do
+                        render "toggle", id:img_info.image_idx, status:img_info.status
+                      end
                     end
                   end
                 end

@@ -4,6 +4,8 @@
     <th class="sortable col col-search_keyword"><a href="/admin/image_infos?order=search_keyword_desc">검색 키워드</a></th>
     <th class="col col-img_thumb">미리보기</th>
     <th class="sortable col col-similarity"><a href="/admin/image_infos?order=similarity_desc">유사도</a></th>
-    <th class="sortable col col-status"><a href="/admin/image_infos?order=status_desc">적합 여부</a></th>
+    <%if !current_admin_user.nil?%>
+      <th class="sortable col col-status"><a href="/admin/image_infos?order=status_desc">적합 여부</a></th>
+    <%end%>
   </tr>
 </thead>
