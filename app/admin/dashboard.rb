@@ -45,7 +45,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
       column do
         panel "Status Chart" do
-          collec = ["판정 전","적합","부적합"]
+          collec = ["판정 전","적합","부적합","","다운완료"]
           data = ImageInfo.group(:status).count.transform_keys{|key| collec[key]}
           bar_chart data, library:{pieSliceText: "value"}
         end
