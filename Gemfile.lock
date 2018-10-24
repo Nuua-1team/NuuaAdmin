@@ -122,6 +122,8 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
+    figaro (1.1.1)
+      thor (~> 0.14)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
     formtastic (3.1.5)
@@ -305,6 +307,7 @@ DEPENDENCIES
   devise
   draper
   enumerize
+  figaro
   font-awesome-rails
   highcharts
   jbuilder (~> 2.5)
@@ -326,4 +329,4 @@ RUBY VERSION
    ruby 2.4.2p198
 
 BUNDLED WITH
-   1.16.5
+   1.16.6
