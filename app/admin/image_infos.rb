@@ -2,20 +2,20 @@ ActiveAdmin.register ImageInfo do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-# permit_params :list, :of, :attributes, :on, :model
+permit_params :list, :of, :attributes, :on, :model
 #
 # or
 #
 # permit_params do
 #   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
+  # permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
 menu priority: 2
 
 
   filter :similarity, as: :numeric_range_filter
-  filter :status, as: :select,:collection => [["판정 전",0],["적합",1],["부적합",2]]
+  filter :status, as: :select,:collection => [["판정 전",0],["적합",1],["부적합",2],["다운완료",4]]
   filter :search_keyword,as: :select
   member_action :toggle, method: :post do
       @img_info = ImageInfo.find(params[:id])
@@ -23,7 +23,7 @@ menu priority: 2
       if @img_info.status != 1
         @img_info.update(status:1)
       else
-        @img_info.update(status:0)
+        @img_info.update(status:2)
       end
       respond_to do |format|
         format.js#s { render "toggle", :locals => {:id => params[:id]} }
