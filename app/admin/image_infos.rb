@@ -11,6 +11,11 @@ permit_params :list, :of, :attributes, :on, :model
   # permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+
+  action_item do
+    link_to "로그인",new_admin_user_session_path
+  end
+
 menu priority: 2
 
 
@@ -34,6 +39,7 @@ menu priority: 2
   index do
     column :image_idx
     column :search_keyword
+
     column :img_thumb do |obj|
         image_tag obj.image_url ,class: "thumb",style: "height: 12em; max-width:30em; width:auto" if obj.image_url?
     end
@@ -41,15 +47,17 @@ menu priority: 2
     column :similarity
 
     #1이 맞는거
-    column :status do |obj|
-      label class:"switch" do
-        render "toggle", id:obj.image_idx, status:obj.status
+    if !current_user.nil?
+      column :status do |obj|
+        label class:"switch" do
+          render "toggle", id:obj.image_idx, status:obj.status
+        end
       end
     end
 
     column :insta_data_id
     column :trip_idx
-    actions
+    actions if !current_user.nil?
 
   end
 
