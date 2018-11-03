@@ -69,7 +69,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
     columns do
-      panel "Log -   ( time:  #{ShowLog.last.time.split(')')[1]}  )",style:"background-color:#272935;color:#eff0ea" do
+      panel "Log -   ( time:  #{ShowLog.last.time}  )",style:"background-color:#272935;color:#eff0ea" do
         div "#{ShowLog.last.log}".html_safe
       end
     end
