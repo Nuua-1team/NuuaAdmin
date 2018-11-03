@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   # patch "admin/image_infos"=>"admin/image_infos#toggle"
 
   post "api/check" => "api#check"
-
+  get "api/test" =>"api#test"
 
 end

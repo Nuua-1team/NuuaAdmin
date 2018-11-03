@@ -11,6 +11,8 @@ class ApiController < ApplicationController
     render json: {result:"yes"}
 
   end
-
+  def test
+    render json: {result:"as"}
+  end
 
 end
