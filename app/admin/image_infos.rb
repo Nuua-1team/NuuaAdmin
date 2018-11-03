@@ -11,6 +11,13 @@ permit_params :list, :of, :attributes, :on, :model
   # permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+batch_action :wonno do |ids|
+  batch_action_collection.where(id: ids).find_each do |image_info|
+    image_info.update(checked: 1)
+  end
+  redirect_to collection_path, alert: "이미지 인포를 성공적으로 변경했습니다."
+end
+
 
 action_item do
   link_to "로그아웃",destroy_admin_user_session_path, method: :delete if !current_admin_user.nil?
@@ -23,14 +30,16 @@ menu priority: 2
 
   filter :similarity, as: :numeric_range_filter
   filter :status, as: :select,:collection => [["판정 전",0],["적합",1],["부적합",2],["다운완료",4]]
+  filter :checked, as: :select,:collection => [["수기분류 전",0],["분류 후",1]]
   filter :search_keyword,as: :select
   member_action :toggle, method: :post do
       @img_info = ImageInfo.find(params[:id])
       @past_status=@img_info.status
       if @img_info.status != 1
-        @img_info.update(status:1)
+        @img_info.update(status:1,checked:1)
+
       else
-        @img_info.update(status:2)
+        @img_info.update(status:2,checked:1)
       end
       respond_to do |format|
         format.js#s { render "toggle", :locals => {:id => params[:id]} }
@@ -57,9 +66,21 @@ menu priority: 2
         end
       end
     end
+    column "insta/trip_id" do |obj|
+      if obj.insta_data_id.nil?
+        div "#{obj.trip_idx}"
+      else
+        div "#{obj.insta_data_id}"
+      end
+    end
+    column "checked" do |obj|
+      if obj.checked==0
+        div "false"
+      else
+        div "true"
+      end
+    end
 
-    column :insta_data_id
-    column :trip_idx
     actions if !current_admin_user.nil?
 
   end

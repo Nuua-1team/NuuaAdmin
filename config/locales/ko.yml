@@ -38,6 +38,7 @@ ko:
         crawling_date: "크롤링 날짜"
         similarity: "유사도"
         status: "적합 여부"
+        checked: "수기 분류 여부"
       admin_user:
         password: 비밀번호
         password_confirmation: "비밀번호 확인"
