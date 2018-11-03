@@ -1,0 +1,20 @@
+{ "log_text":"  File \"/usr/local/lib/python3.6/site-packages/tensorflow/python/framework/ops.py\", line 3488, in as_graph_element
+    return self._as_graph_element_locked(obj, allow_tensor, allow_operation)
+  File \"/usr/local/lib/python3.6/site-packages/tensorflow/python/framework/ops.py\", line 3567, in _as_graph_element_locked
+    raise ValueError(\"Tensor %s is not an element of this graph.\" % obj)
+ValueError: Tensor Tensor(\"Placeholder_10:0\", shape=(?,), dtype=string) is not an element of this graph.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File \"image_validator.py\", line 249, in <module>
+    validator.validate_img(threshold=0.6, size=10)
+  File \"image_validator.py\", line 197, in validate_img
+    input_path=image[\'file_address\'])
+  File \"image_validator.py\", line 97, in similarity_test
+    similarities = sess.run(similarity_op, feed_dict={input_byte: image_bytes})
+  File \"/usr/local/lib/python3.6/site-packages/tensorflow/python/client/session.py\", line 887, in run
+    run_metadata_ptr)
+  File \"/usr/local/lib/python3.6/site-packages/tensorflow/python/client/session.py\", line 1053, in _run
+    \'Cannot interpret feed_dict key as Tensor: \' + e.args[0])
+TypeError: Cannot interpret feed_dict key as Tensor: Tensor Tensor(\"Placeholder_10:0\", shape=(?,), dtype=string) is not an element of this graph.","time":"2018. 11. 03. (토) 18:34:46 KST"}

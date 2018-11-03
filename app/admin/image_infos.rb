@@ -39,6 +39,7 @@ menu priority: 2
     end
 
   index do
+    selectable_column
     column :image_idx
     column :search_keyword
 

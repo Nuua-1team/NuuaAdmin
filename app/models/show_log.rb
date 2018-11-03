@@ -1,0 +1,2 @@
+class ShowLog < ApplicationRecord
+end

@@ -23,11 +23,11 @@ ActiveAdmin.register_page "Dashboard" do
     #
     columns do
       column do
-        panel "Recent data" do
+        panel "Recent data",style:"" do
           table border:"0",cellspacing:"0", cellpadding:"0", id:"index_table_image_infos" ,class:"index_table index" do
             render "thead"
             tbody do
-              ImageInfo.order("image_idx desc").limit(5).map do |img_info|
+              ImageInfo.order("image_idx desc").limit(4).map do |img_info|
                 tr class:"odd",id:"image_info_#{img_info.image_idx}" do
                   td class:"col col-image_idx" do
                     img_info.image_idx
@@ -53,13 +53,6 @@ ActiveAdmin.register_page "Dashboard" do
             end
           end
         end
-
-        panel "Data Count" do
-          div "Total : #{ImageInfo.count } 개 "
-          div "트립 : #{ImageInfo.where("trip_idx is not null").count } 개 "
-          div "인스타 : #{ImageInfo.where("insta_data_id is not null").count } 개"
-
-        end
       end
       column do
         panel "Status Chart" do
@@ -67,10 +60,19 @@ ActiveAdmin.register_page "Dashboard" do
           data = ImageInfo.group(:status).count.transform_keys{|key| collec[key]}
           bar_chart data, library:{pieSliceText: "value"}
         end
-        panel "Keyword Rating" do
-          pie_chart ImageInfo.group(:search_keyword).count
+        panel "Data Count" do
+          div "Total : #{ImageInfo.count } 개 "
+          div "트립 : #{ImageInfo.where("trip_idx is not null").count } 개 "
+          div "인스타 : #{ImageInfo.where("insta_data_id is not null").count } 개"
         end
+
+      end
+    end
+    columns do
+      panel "Log -   ( time:  #{ShowLog.last.time.split(')')[1]}  )",style:"background-color:#272935;color:#eff0ea" do
+        div "#{ShowLog.last.log}".html_safe
       end
     end
   end # content
+
 end

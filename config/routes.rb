@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   root 'admin/dashboard#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # patch "admin/image_infos"=>"admin/image_infos#toggle"
+
+  post "api/check" => "api#check"
+
+
 end
