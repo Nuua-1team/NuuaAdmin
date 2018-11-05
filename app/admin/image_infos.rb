@@ -11,12 +11,14 @@ permit_params :list, :of, :attributes, :on, :model
   # permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-batch_action :wonno do |ids|
-  batch_action_collection.where(id: ids).find_each do |image_info|
+batch_action :checked do |ids|
+  batch_action_collection.where(image_idx: ids).find_each do |image_info|
     image_info.update(checked: 1)
   end
   redirect_to collection_path, alert: "이미지 인포를 성공적으로 변경했습니다."
 end
+
+
 
 
 action_item do

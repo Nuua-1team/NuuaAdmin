@@ -1,20 +1,26 @@
-{ "log_text":"  File \"/usr/local/lib/python3.6/site-packages/tensorflow/python/framework/ops.py\", line 3488, in as_graph_element
-    return self._as_graph_element_locked(obj, allow_tensor, allow_operation)
-  File \"/usr/local/lib/python3.6/site-packages/tensorflow/python/framework/ops.py\", line 3567, in _as_graph_element_locked
-    raise ValueError(\"Tensor %s is not an element of this graph.\" % obj)
-ValueError: Tensor Tensor(\"Placeholder_10:0\", shape=(?,), dtype=string) is not an element of this graph.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File \"image_validator.py\", line 249, in <module>
-    validator.validate_img(threshold=0.6, size=10)
-  File \"image_validator.py\", line 197, in validate_img
-    input_path=image[\'file_address\'])
-  File \"image_validator.py\", line 97, in similarity_test
-    similarities = sess.run(similarity_op, feed_dict={input_byte: image_bytes})
-  File \"/usr/local/lib/python3.6/site-packages/tensorflow/python/client/session.py\", line 887, in run
-    run_metadata_ptr)
-  File \"/usr/local/lib/python3.6/site-packages/tensorflow/python/client/session.py\", line 1053, in _run
-    \'Cannot interpret feed_dict key as Tensor: \' + e.args[0])
-TypeError: Cannot interpret feed_dict key as Tensor: Tensor Tensor(\"Placeholder_10:0\", shape=(?,), dtype=string) is not an element of this graph.","time":"2018. 11. 03. (토) 18:34:46 KST"}
+{ "log_text":"2018-11-03 22:47:44.386957: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1490] Adding visible gpu devices: 0
+!n!
+2018-11-03 22:47:44.387009: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] Device interconnect StreamExecutor with strength 1 edge matrix:
+!n!
+2018-11-03 22:47:44.387018: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977]      0
+!n!
+2018-11-03 22:47:44.387024: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 0:   N
+!n!
+2018-11-03 22:47:44.387155: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1103] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10403 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:02:00.0, compute capability: 6.1)
+!n!
+2 images inference time: 2.24 s
+!n!
+- similarity: 0.41
+!n!
+img_idx :  9353
+!n!
+2018-11-03 22:48:23.206029: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1490] Adding visible gpu devices: 0
+!n!
+2018-11-03 22:48:23.206075: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] Device interconnect StreamExecutor with strength 1 edge matrix:
+!n!
+2018-11-03 22:48:23.206083: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977]      0
+!n!
+2018-11-03 22:48:23.206089: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 0:   N
+!n!
+2018-11-03 22:48:23.206228: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1103] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10403 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:02:00.0, compute capability: 6.1)
+!n!","time":"2018. 11. 03. (토) 22:48:24 KST"}
