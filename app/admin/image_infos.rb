@@ -1,6 +1,6 @@
 ActiveAdmin.register ImageInfo do
 
-# config.current_filters = false
+config.current_filters = false
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -82,14 +82,10 @@ menu priority: 2
 
     selectable_column if !current_admin_user.nil?
     column :image_idx
-    column :search_keyword
+
     column :img_thumb do |obj|
         image_tag obj.image_url ,class: "thumb",style: "height: 12em; max-width:30em; width:auto" if obj.image_url?
     end
-    column :crawling_date
-    column :similarity
-
-    #1이 맞는거
     if !current_admin_user.nil?
       column :status do |obj|
         label class:"switch" do
@@ -97,13 +93,7 @@ menu priority: 2
         end
       end
     end
-    column "insta/trip_id" do |obj|
-      if obj.insta_data_id.nil?
-        div "#{obj.trip_idx}"
-      else
-        div "#{obj.insta_data_id}"
-      end
-    end
+    column :similarity
     column "checked" do |obj|
       if obj.checked==0
         div "false"
@@ -111,6 +101,19 @@ menu priority: 2
         div "true"
       end
     end
+    column :crawling_date
+
+    column :search_keyword
+    #1이 맞는거
+
+    column "insta/trip_id" do |obj|
+      if obj.insta_data_id.nil?
+        div "#{obj.trip_idx}"
+      else
+        div "#{obj.insta_data_id}"
+      end
+    end
+
 
     actions if !current_admin_user.nil?
   end
