@@ -31,3 +31,11 @@
 #comments{
   display:none !important;
 }
+
+
+ #active_admin_content { display: flex; flex-direction: column }
+ #active_admin_content #sidebar { order: -1; margin: 0 -.5rem; display: flex; width: auto; }
+ #active_admin_content #sidebar > div { width: auto; margin: .5rem; flex: 1 1 100%;}
+ #active_admin_content #sidebar > div:first-child { flex:  0 0 auto }
+ #active_admin_content #main_content_wrapper #main_content { margin: 0 }
+ #diplay-filter .table_tools { margin: 1rem 0; }

@@ -14,3 +14,6 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+$("#diplay-filter").text("필터 옵션")

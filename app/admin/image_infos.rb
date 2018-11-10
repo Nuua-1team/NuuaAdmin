@@ -1,4 +1,7 @@
 ActiveAdmin.register ImageInfo do
+
+# config.current_filters = false
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -15,11 +18,38 @@ batch_action :checked do |ids|
   batch_action_collection.where(image_idx: ids).find_each do |image_info|
     image_info.update(checked: 1)
   end
-  redirect_to collection_path, alert: "이미지 인포를 성공적으로 변경했습니다."
+  redirect_to collection_path(request.query_parameters)
+
 end
 
+# inheritable_setting :current_filters, false
 
 
+controller do
+  def index
+    index! do |format|
+      # if params[:scope] && params[:scope] != ""
+      #   @image_infos = ImageInfo.try(params[:scope]).order("image_idx desc").page(params[:page]).per(100)
+      #   puts(params[:scope])
+      # else
+      @image_infos = ImageInfo.all.order("image_idx desc").where("not status = 0").page(params[:page]).per(100)
+      # end
+      if params[:q]
+          puts "----------------------------------"
+          puts params[:q]
+          puts "----------------------------------"
+          @image_infos = @image_infos.ransack(params[:q]).result
+      else
+        @image_infos = @image_infos.where("checked = false")
+      end
+
+    format.html
+    format.csv   { stream_csv }
+    format.json  { render json: @users }
+    format.xml   { render xml: @users }
+    end
+  end
+end
 
 action_item do
   link_to "로그아웃",destroy_admin_user_session_path, method: :delete if !current_admin_user.nil?
@@ -34,26 +64,25 @@ menu priority: 2
   filter :status, as: :select,:collection => [["판정 전",0],["적합",1],["부적합",2],["다운완료",4]]
   filter :checked, as: :select,:collection => [["수기분류 전",0],["분류 후",1]]
   filter :search_keyword,as: :select
+
   member_action :toggle, method: :post do
       @img_info = ImageInfo.find(params[:id])
       @past_status=@img_info.status
       if @img_info.status != 1
         @img_info.update(status:1,checked:1)
-
       else
         @img_info.update(status:2,checked:1)
       end
       respond_to do |format|
         format.js#s { render "toggle", :locals => {:id => params[:id]} }
       end
-
     end
 
   index do
-    selectable_column
+
+    selectable_column if !current_admin_user.nil?
     column :image_idx
     column :search_keyword
-
     column :img_thumb do |obj|
         image_tag obj.image_url ,class: "thumb",style: "height: 12em; max-width:30em; width:auto" if obj.image_url?
     end
@@ -84,7 +113,6 @@ menu priority: 2
     end
 
     actions if !current_admin_user.nil?
-
   end
 
 
