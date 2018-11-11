@@ -24,32 +24,26 @@ end
 
 # inheritable_setting :current_filters, false
 
-
-controller do
-  def index
-    index! do |format|
-      # if params[:scope] && params[:scope] != ""
-      #   @image_infos = ImageInfo.try(params[:scope]).order("image_idx desc").page(params[:page]).per(100)
-      #   puts(params[:scope])
-      # else
-      @image_infos = ImageInfo.all.order("image_idx desc").where("not status = 0").page(params[:page]).per(100)
-      # end
-      if params[:q]
-          puts "----------------------------------"
-          puts params[:q]
-          puts "----------------------------------"
-          @image_infos = @image_infos.ransack(params[:q]).result
-      else
-        @image_infos = @image_infos.where("checked = false")
-      end
-
-    format.html
-    format.csv   { stream_csv }
-    format.json  { render json: @users }
-    format.xml   { render xml: @users }
-    end
-  end
-end
+#
+# controller do
+#   def index
+#     index! do |format|
+#
+#       @image_infos = ImageInfo.all.order("image_idx desc").where("not status = 0").page(params[:page]).per(100)
+#       # end
+#       if params[:q]
+#         @image_infos = @image_infos.ransack(params[:q]).result
+#       else
+#         @image_infos = @image_infos.where("checked = false")
+#       end
+#
+#       format.html
+#       format.csv   { stream_csv }
+#       format.json  { render json: @users }
+#       format.xml   { render xml: @users }
+#     end
+#   end
+# end
 
 action_item do
   link_to "로그아웃",destroy_admin_user_session_path, method: :delete if !current_admin_user.nil?
