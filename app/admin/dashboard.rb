@@ -72,9 +72,9 @@ ActiveAdmin.register_page "Dashboard" do
            sorry_sim = ImageInfo.where("similarity = 0.60")
            # wow_s
            new_group=Hash.new
-           new_group["0.1 .. 0.39"]=origin_group[0.1]+origin_group[0.2]+origin_group[0.3]
-           new_group["0.4 .. 0.59"]=origin_group[0.4]+origin_group[0.5]
-           new_group["0.6 .. 0.69"] = origin_group[0.6]
+           new_group["0.1 .. 0.29"]=origin_group[0.1]+origin_group[0.2]
+           new_group["0.3 .. 0.49"]=origin_group[0.4]+origin_group[0.3]
+           new_group["0.5 .. 0.69"] = origin_group[0.6]+origin_group[0.5]
            new_group["0.7 .. 1.0"] = origin_group[0.7]+origin_group[0.8]+origin_group[0.9]+origin_group[1.0]
 
            pie_chart new_group
