@@ -87,6 +87,7 @@ ko:
       title_content: "댓글 (%{count})"
       errors:
         empty_text: "댓글이 저장되지 않았습니다. 내용을 입력해주세요."
+      delete_confirmation: "삭제"
     devise:
       username:
         title: "아이디"

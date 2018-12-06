@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_03_100600) do
+ActiveRecord::Schema.define(version: 2018_12_06_092644) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 2018_11_03_100600) do
     t.integer "negative_img_count", null: false, comment: "유사하지 않은 이미지 수", unsigned: true
     t.integer "total_img_count", null: false, comment: "전체 저장한 이미지 수", unsigned: true
     t.integer "sharding_no", default: 0
+  end
+
+  create_table "simlists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.float "sim"
+    t.integer "is_positive"
+    t.bigint "image_info_id"
+    t.datetime "created_at"
+    t.string "target_name"
+    t.index ["image_info_id"], name: "index_simlists_on_image_info_id"
   end
 
   create_table "test", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

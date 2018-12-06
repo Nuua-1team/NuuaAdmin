@@ -80,14 +80,21 @@ menu priority: 2
     column :img_thumb do |obj|
         image_tag obj.image_url ,class: "thumb",style: "height: 12em; max-width:30em; width:auto" if obj.image_url?
     end
-    if !current_admin_user.nil?
-      column :status do |obj|
-        label class:"switch" do
-          render "toggle", id:obj.image_idx, status:obj.status
-        end
+    # if !current_admin_user.nil?
+    #   column :status do |obj|
+    #     label class:"switch" do
+    #       render "toggle", id:obj.image_idx, status:obj.status
+    #     end
+    #   end
+    # end
+
+    column :similarity
+    column "simlist" do |obj|
+
+      obj.simlists.each do |s|
+        span s.target_name.split("/")[1]+ ":" + s.sim.round(2).to_s
       end
     end
-    column :similarity
     column "checked" do |obj|
       if obj.checked==0
         div "false"

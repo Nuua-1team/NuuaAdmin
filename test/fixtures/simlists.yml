@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sim: 1.5
+  is_positive: false
+  image_info: one
+
+two:
+  sim: 1.5
+  is_positive: false
+  image_info: two
