@@ -90,10 +90,10 @@ menu priority: 2
 
     column :similarity
     column "simlist" do |obj|
-
-      obj.simlists.each do |s|
-        span s.target_name.split("/")[1]+ ":" + s.sim.round(2).to_s
+      obj.simlists.each_with_index do |s,i|
+        div s.target_name.split("/")[1]+ "  :  " + s.sim.round(2).to_s
       end
+      div ""
     end
     column "checked" do |obj|
       if obj.checked==0
@@ -102,7 +102,9 @@ menu priority: 2
         div "true"
       end
     end
-    column :crawling_date
+    column "crawling_date" do |d|
+      d.crawling_date.strftime("%b %d %I:%M %p")
+    end
 
     column :search_keyword
     #1이 맞는거

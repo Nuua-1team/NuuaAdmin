@@ -2,41 +2,13 @@
 ko:
   activerecord:
     attributes:
-      afficher_les_filtres: 필터
-      message:
-        id: No
-        admin_user: 보낸이
-        created_at: "발송일"
-        body: 메시지
-        user: 받은이
-      user_finance:
-        finance: 종목명
-        purchase_price: "구입가"
-        rec_date: "등록일"
-      user:
-        password: 비밀번호
-        password_confirmation: "비밀번호 확인"
-        id: "No"
-        name: 이름
-        phone: "연락처"
-        admin_user: 담당자
-        free_start_date: "무료체험시작일"
-        free_end_date: "무료체험종료일"
-        paid_start_date: 유료체험시작일
-        paid_end_date: 유료체험종료일
-        status: 회원등급
-        memo: 메모
-        anal_1: "애널리스트 1"
-        anal_2: "애널리스트 2"
-        time_slot: 시간대
-        created_at: "생성 시간"
-        updated_at: "수정 시간"
       image_info:
         image_idx: "id"
         search_keyword: "검색 키워드"
         img_thumb: "미리보기"
         crawling_date: "크롤링 날짜"
         similarity: "유사도"
+        simlist: "유사도 리스트"
         status: "적합 여부"
         checked: "수기 분류 여부"
       admin_user:
@@ -69,14 +41,9 @@ ko:
         title: 제목
         content: 내용
     models:
-      user: 고객
-      admin_user: 직원
-      finance: 증권
-      message: 메세지
-      edit_user: 유저정보수정
-      analyst: "애널리스트 페이지"
-      recommand_finance: "애널리스트 종목 추천"
-      notice: 공지사항
+      image_info: 이미지정보
+      trip_metadata: 트립어드바이저
+      insta_metadata: 인스타
     errors:
       messages:
         record_invalid: 데이터 검증에 실패하였습니다. %{errors}
