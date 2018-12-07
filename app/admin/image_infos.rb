@@ -80,13 +80,13 @@ menu priority: 2
     column :img_thumb do |obj|
         image_tag obj.image_url ,class: "thumb",style: "height: 12em; max-width:30em; width:auto" if obj.image_url?
     end
-    # if !current_admin_user.nil?
-    #   column :status do |obj|
-    #     label class:"switch" do
-    #       render "toggle", id:obj.image_idx, status:obj.status
-    #     end
-    #   end
-    # end
+    if !current_admin_user.nil?
+      column :status do |obj|
+        label class:"switch" do
+          render "toggle", id:obj.image_idx, status:obj.status
+        end
+      end
+    end
 
     column :similarity
     column "simlist" do |obj|
