@@ -72,5 +72,7 @@ gem 'activeadmin_addons'
 gem 'enumerize'
 gem 'active_median'
 gem "chartkick"
-gem "highcharts"
+gem "highcharts-rails"
+
+
 gem "figaro"

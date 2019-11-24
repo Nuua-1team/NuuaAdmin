@@ -1,0 +1,2 @@
+class DeviseCreateAdminUser < ApplicationRecord
+end
