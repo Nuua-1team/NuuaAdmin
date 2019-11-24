@@ -14,8 +14,8 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: foodiary-image
-  username: root
-  password: <%= ENV["MYSQL_PASS"] %>
+  username: foodiary
+  password: <%= ENV["FOODIARY_PASS"] %>
   host: localhost
   # socket: /tmp/mysql.sock
 development:
